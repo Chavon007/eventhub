@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>EventHub</title>
+    <link href="../src/output.css" rel="stylesheet" />
+    <link
+      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+    />
+  </head>
+  <body>
+    <!--navbar section-->
+    <nav
+      class="navbar bg-black shadow-[0_0_10px_rgba(0,0,0,0.5)] top-0 left-0 sm:w-full"
+    >
+      <div class="flex justify-between w-[90%] mx-auto items-center p-[10px]">
+        <div
+          class="text-base font-serif italic text-red-100 md:text-lg lg:text-3xl font-serif italic font-bold"
+        >
+          <h2 class="font-bold hover:text-gray-400">EventHub</h2>
+        </div>
+
+        <div class="w-[50%] mr-[60px]">
+          <ul class="hidden md:flex justify-center p-[10px]" id="navlink">
+            <li class="pl-[50px] pr-[20px]">
+              <a
+                href="/index.html"
+                class="mainlinks text-red-100 hover:text-gray-400 text-base font-['Times_New_Roman']"
+                >Home</a
+              >
+            </li>
+            <li class="pl-[50px] pr-[20px]">
+              <a
+                href="../about/about.html"
+                class="mainlinks text-red-100 hover:text-gray-400 text-base font-['Times_New_Roman']"
+                >About</a
+              >
+            </li>
+            <li class="pl-[50px] pr-[20px]">
+              <a
+                href="../event/event.html"
+                class="mainlinks text-red-100 hover:text-gray-400 text-base font-['Times_New_Roman']"
+                >Events</a
+              >
+            </li>
+            <li class="pl-[50px] pr-[20px]">
+              <a
+                href=""
+                class="mainlinks text-red-100 hover:text-gray-400 text-base font-['Times_New_Roman']"
+                ><i class="bx bx-user-circle text-2xl"></i
+              ></a>
+            </li>
+          </ul>
+        </div>
+
+        <div class="md:hidden">
+          <i
+            id="open"
+            class="bx bx-menu text-base hover:text-gray-400 text-red-100"
+          ></i>
+          <i
+            id="close"
+            class="bx bx-x text-base hidden hover:text-gray-400 text-red-100"
+          ></i>
+        </div>
+      </div>
+    </nav>
+
+    <!--bash-->
+
+    <div class="w-full bg-black">
+      <div class="w-[90%] mx-auto pt-[20px]">
+        <!--header-->
+        <div class="flex justify-center items-center flex-col">
+          <h3 class="text-red-100 text-2xl font-bold font-mons">
+            Bash Parties
+          </h3>
+          <p class="text-gray-400 text-base text-center mt-[10px] font-sans">
+            Book your tickets for the most exciting parties and enjoy every moments.
+          </p>
+        </div>
+
+        <!--search bar-->
+
+        <div
+          class="eventSearch text-white mt-[15px] flex justify-center items-center"
+        >
+          <input
+            id="input"
+            class="bg-neutral-900 rounded-3xl w-[250px] md:w-[500px] p-[10px] placeholder:text-xs placeholder:font-serif focus:outline-none"
+            type="text"
+            placeholder="Search for events catergory"
+          />
+        </div>
+
+        
+
+        <!--Events-->
+
+     <div
+          id="bashEvents"
+          class="relative grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mt-[30px]"
+        ></div>
+    <!--Footer-->
+
+    <div class="bg-black pt-[30px] pb-[30px]">
+      <div class="w-[90%] mx-auto h-auto">
+        <!-- first footer content-->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-[20px]">
+          <!--eventhub desc-->
+          <div>
+            <h4 class="text-2xl text-red-100 font-mons font-bold">EventHub</h4>
+            <p class="text-gray-400 text-base mt-[10px] font-sans">
+              Your premier destination for discovering and booking tickets to
+              the most exciting events. From concerts to conferences, we've got
+              you covered.
+            </p>
+            <ul class="flex mt-[10px] gap-4">
+              <li class="">
+                <a
+                  href=""
+                  class="text-gray-400 text-base mt-[10px] font-sans hover:text-red-100"
+                  ><i class="bx bxl-facebook"></i
+                ></a>
+              </li>
+              <li class="">
+                <a
+                  href=""
+                  class="text-gray-400 text-base mt-[10px] font-sans hover:text-red-100"
+                  ><i class="bx bxl-twitter"></i
+                ></a>
+              </li>
+              <li class="">
+                <a
+                  href=""
+                  class="text-gray-400 text-base mt-[10px] font-sans hover:text-red-100"
+                  ><i class="bx bxl-instagram"></i
+                ></a>
+              </li>
+              <li class="">
+                <a
+                  href=""
+                  class="text-gray-400 text-base mt-[10px] font-sans hover:text-red-100"
+                  ><i class="bx bxl-tiktok"></i
+                ></a>
+              </li>
+            </ul>
+          </div>
+
+          <!--browse events-->
+          <div class="">
+            <h4 class="text-2xl text-red-100 font-mons font-bold">
+              Browse Events
+            </h4>
+            <ul class="mt-[10px]">
+              <li class="p-[10px]">
+                <a
+                  href=""
+                  class="text-gray-400 text-base font-sans hover:text-red-100"
+                  >Music Festivals</a
+                >
+              </li>
+              <li class="p-[10px]">
+                <a
+                  href=""
+                  class="text-gray-400 text-base font-sans hover:text-red-100"
+                  >Movie Premieres</a
+                >
+              </li>
+              <li class="p-[10px]">
+                <a
+                  href=""
+                  class="text-gray-400 text-base font-sans hover:text-red-100"
+                  >Football Matches</a
+                >
+              </li>
+              <li class="p-[10px]">
+                <a
+                  href=""
+                  class="text-gray-400 text-base font-sans hover:text-red-100"
+                  >Bash Party</a
+                >
+              </li>
+            </ul>
+          </div>
+
+          <!--Support-->
+
+          <div class="">
+            <h3 class="text-2xl text-red-100 font-mons font-bold">Support</h3>
+            <ul class="mt-[10px]">
+              <li class="p-[10px]">
+                <a
+                  href=""
+                  class="text-gray-400 text-base font-sans hover:text-red-100"
+                  >Help Center</a
+                >
+              </li>
+              <li class="p-[10px]">
+                <a
+                  href=""
+                  class="text-gray-400 text-base font-sans hover:text-red-100"
+                  >Contact Us</a
+                >
+              </li>
+              <li class="p-[10px]">
+                <a
+                  href=""
+                  class="text-gray-400 text-base font-sans hover:text-red-100"
+                  >Refund Policy</a
+                >
+              </li>
+              <li class="p-[10px]">
+                <a
+                  href=""
+                  class="text-gray-400 text-base font-sans hover:text-red-100"
+                  >FAQ</a
+                >
+              </li>
+            </ul>
+          </div>
+
+          <!--account details-->
+          <div class="">
+            <h4 class="text-2xl text-red-100 font-mons font-bold">Account</h4>
+            <ul class="mt-[10px]">
+              <li class="p-[10px]">
+                <a
+                  href=""
+                  class="text-gray-400 text-base font-sans hover:text-red-100"
+                  >Create Account</a
+                >
+              </li>
+              <li class="p-[10px]">
+                <a
+                  href=""
+                  class="text-gray-400 text-base font-sans hover:text-red-100"
+                  >Sign In</a
+                >
+              </li>
+              <li class="p-[10px]">
+                <a
+                  href=""
+                  class="text-gray-400 text-base font-sans hover:text-red-100"
+                  >My Account</a
+                >
+              </li>
+              <li class="p-[10px]">
+                <a
+                  href=""
+                  class="text-gray-400 text-base font-sans hover:text-red-100"
+                  >My Tickets</a
+                >
+              </li>
+              <li class="p-[10px]">
+                <a
+                  href=""
+                  class="text-gray-400 text-base font-sans hover:text-red-100"
+                  >Order History</a
+                >
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <!--second footer content-->
+        <div class="bg-neutral-900 lg:w-[30%] h-auto pb-[30px] rounded-2xl">
+          <!--newsletter-->
+          <div
+            class="w-[90%] ml-auto mr-auto justify-center items-center h-full"
+          >
+            <h4 class="text-1xl text-red-100 font-mons font-bold pt-[40px]">
+              Stay Updated
+            </h4>
+            <p class="text-gray-400 text-sm mt-[10px] font-sans">
+              Get the latest events and exclusive offers delivered to your
+              inbox.
+            </p>
+            <form action="" class="flex flex-col">
+              <input
+                type="email"
+                class="bg-black rounded-3xl w-[300px] md:w-[500px] lg:w-[300px] mt-[20px] p-[10px] placeholder:text-xs placeholder:font-serif focus:outline-none text-gray-400"
+                placeholder="Enter Your Email Address"
+              />
+              <button
+                type="submit"
+                class="bg-red-100 w-[150px] p-[10px] mt-[20px] rounded-3xl ml-auto mr-auto text-base font-sans text-gray-500 font-bold hover:bg-black hover:text-white"
+              >
+                Subscribe
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!--copy right-->
+
+    <div class="bg-black p-[10px]">
+      <p class="text-center text-base text-gray-400 font-mons">
+        &copy; 2025. All right reserved by EventHub
+      </p>
+    </div>
+
+    <script src="../script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+  </body>
+</html>
