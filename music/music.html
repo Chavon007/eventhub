@@ -30,7 +30,7 @@
           <ul class="hidden md:flex justify-center p-[10px]" id="navlink">
             <li class="pl-[50px] pr-[20px]">
               <a
-                href="/"
+                href="/index.html"
                 class="mainlinks text-red-100 hover:text-gray-400 text-base font-['Times_New_Roman']"
                 >Home</a
               >
@@ -51,10 +51,10 @@
             </li>
             <li class="pl-[50px] pr-[20px]">
               <a
-                href="../contact/contact.html"
+                href=""
                 class="mainlinks text-red-100 hover:text-gray-400 text-base font-['Times_New_Roman']"
-                >Contact</a
-              >
+                ><i class="bx bx-user-circle text-2xl"></i
+              ></a>
             </li>
           </ul>
         </div>
@@ -72,89 +72,41 @@
       </div>
     </nav>
 
-    <!--about section-->
-    <div class="h-[90vh] w-full bg-neutral-900">
-      <div class="flex w-[90%] mx-auto justify-center items-center h-full">
-        <div
-          class="about-text w-[100%] lg:w-[50%] flex flex-col justify-center items-center h-[80%]"
-        >
-          <div class="pt-[30px]">
-            <h2
-              class="text-red-100 text-center text-2xl md:text-3xl font-bold font-mons"
-            >
-              About us
-            </h2>
-            <h6
-              class="text-gray-400 text-sm md:text-1xl text-center mt-[10px] font-sans italic font-bold"
-            >
-              Your Ultimate Destination for Unforgettable Experiences
-            </h6>
-            <p
-              class="text-gray-400 text-justify font-serif text-xs md:text-sm mt-[10px] pr-[20px]"
-            >
-              At EventHub, we bring your favorite events closer than ever, from
-              electrifying music festivals and star-studded movie premieres to
-              heart-pounding football games and epic party nights. Whether
-              you're a die-hard fan or just looking for a great time out,
-              EventHub is your go-to platform for discovering and booking
-              tickets to the most exciting happenings around you.
-            </p>
-            <p
-              class="text-gray-400 text-justify font-serif text-xs md:text-sm mt-[10px] pr-[20px]"
-            >
-              We’re more than just a booking site, we’re a hub where memories
-              are made. With a user-friendly interface, secure payment options,
-              and real-time updates, we make it easy for you to find events you
-              love, book tickets instantly, and never miss a moment of the
-              action.
-            </p>
-          </div>
-          <div class="mt-[30px]">
-            <h5 class="text-red-100 text-center text-1xl font-bold font-mons">
-              Visit Our Socials
-            </h5>
-            <ul class="flex justify-center items-center mt-[10px]">
-              <li class="p-[20px]">
-                <a
-                  href=""
-                  class="text-gray-400 text-base mt-[10px] font-sans hover:text-red-100"
-                  ><i class="bx bxl-facebook"></i
-                ></a>
-              </li>
-              <li class="p-[20px]">
-                <a
-                  href=""
-                  class="text-gray-400 text-base mt-[10px] font-sans hover:text-red-100"
-                  ><i class="bx bxl-twitter"></i
-                ></a>
-              </li>
-              <li class="p-[20px]">
-                <a
-                  href=""
-                  class="text-gray-400 text-base mt-[10px] font-sans hover:text-red-100"
-                  ><i class="bx bxl-instagram"></i
-                ></a>
-              </li>
-              <li class="p-[20px]">
-                <a
-                  href=""
-                  class="text-gray-400 text-base mt-[10px] font-sans hover:text-red-100"
-                  ><i class="bx bxl-tiktok"></i
-                ></a>
-              </li>
-            </ul>
-          </div>
+    <!--bash-->
+
+    <div class="w-full bg-black">
+      <div class="w-[90%] mx-auto pt-[20px]">
+        <!--header-->
+        <div class="flex justify-center items-center flex-col">
+          <h3 class="text-red-100 text-2xl font-bold font-mons">
+            Movie Events
+          </h3>
+          <p class="text-gray-400 text-base text-center mt-[10px] font-sans">
+            Book your tickets to watch the most exciting movies  in the world.
+          </p>
         </div>
 
-        <div class="about-image hidden lg:block w-[50%]">
-          <img
-            class="h-[535px] w-[100%]"
-            src="../image/abt2.jpg"
-            alt="event center"
+        <!--search bar-->
+
+        <div
+          class="eventSearch text-white mt-[15px] flex justify-center items-center"
+        >
+          <input
+            id="input"
+            class="bg-neutral-900 rounded-3xl w-[250px] md:w-[500px] p-[10px] placeholder:text-xs placeholder:font-serif focus:outline-none"
+            type="text"
+            placeholder="Search for events catergory"
           />
         </div>
-      </div>
-    </div>
+
+        
+
+        <!--Events-->
+
+     <div
+          id="musicEvents"
+          class="relative grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mt-[30px]"
+        ></div>
     <!--Footer-->
 
     <div class="bg-black pt-[30px] pb-[30px]">
@@ -356,7 +308,7 @@
       </p>
     </div>
 
-    <script src="script.js"></script>
+    <script src="../script.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
   </body>
 </html>

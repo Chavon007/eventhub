@@ -45,10 +45,12 @@ document.addEventListener("DOMContentLoaded", () => {
     {
       name: "Music Festivals",
       image: "../image/music.jpg",
+      link: "../music/music.html",
     },
     {
       name: "Movie Premieres",
       image: "../image/movie.jpg",
+      link: "../movie/movies.html",
     },
     {
       name: "Football Matches",
@@ -232,11 +234,11 @@ document.addEventListener("DOMContentLoaded", () => {
                   <p class="pl-[10px] pb-[3px] text-gray-300">
                   <button id="vipminusIcon-${
                     events._id
-                  }" class="p-[5px]" type="button"><i class="bx bx-minus"></i></button
+                  }" class="cursor-pointer p-[5px]" type="button"><i class="bx bx-minus"></i></button
                   ><span id="vipnums-${events._id}">1</span
                  ><button id="vipplusIcon-${
                    events._id
-                 }" class="p-[5px]" type="button"><i class="bx bx-plus"></i></button>
+                 }" class="cursor-pointer p-[5px]" type="button"><i class="bx bx-plus"></i></button>
                  </p>
                 </div>
 
@@ -248,11 +250,11 @@ document.addEventListener("DOMContentLoaded", () => {
                   <p class="pl-[10px] pb-[3px] text-gray-300">
                   <button id="regularminusIcon-${
                     events._id
-                  }" class="p-[5px]" type="button"><i class="bx bx-minus"></i></button
+                  }" class="cursor-pointer p-[5px]" type="button"><i class="bx bx-minus"></i></button
                   ><span id="regularnums-${events._id}">1</span
                  ><button id="regularplusIcon-${
                    events._id
-                 }" class="p-[5px]" type="button"><i class="bx bx-plus"></i></button>
+                 }" class="cursor-pointer p-[5px]" type="button"><i class="bx bx-plus"></i></button>
                  </p>
                 </div>
                 
@@ -401,30 +403,32 @@ document.addEventListener("DOMContentLoaded", () => {
               
             </div>
 
-            <div class="flex justify-between bg-neutral-900 p-[15px]">
-              <div class="w-[40%]">
-                <h2 class="text-1xl font-mons font-bold text-red-100">Party Information</h2>
-                <p class="mt-[3px] text-sm md:text-base text-gray-400 font-sans">${
+            <div class="flex flex-col bg-neutral-900 p-[15px]">
+              <div class="w-[80%] mx-auto">
+                <h2 class="text-2xl text-center font-mons font-bold text-red-100">Party Information</h2>
+                <p class="mt-[3px] text-center text-sm md:text-base text-gray-400 font-sans">${
                   partyevents.details
                 } </p>
-                <p>Dress Code: ${partyevents.dress}</p>
+                <p class="text-sm italic text-red-200 font-bold font-serif mt-[5px] pl-[20px]">Dress Code: ${
+                  partyevents.dress
+                }</p>
               </div>
 
-              <div class= w-[30%]>
-                <h2 class="text-sm md:text-1xl font-mons font-bold text-red-100">Ticket Price</h2>
+              <div class= w-[100%]>
+                <h2 class="text-sm md:text-1xl font-mons font-bold text-red-100 mt-[10px]">Ticket Price</h2>
 
                 <div class="mt-[10px] shadow-[0_0_10px_0_theme('colors.red.100')]">
-                  <p class="pl-[10px] text-sm text-gray-300 font-semibold font-sans">Price: <span class=" italic" id="vipprice-${
+                  <p class="pl-[10px] text-sm text-gray-300 font-semibold font-sans">Price: <span class=" italic" id="bashprice-${
                     partyevents._id
                   }">₦${partyevents.ticket}</span></p>
                   <p class="pl-[10px] pb-[3px] text-gray-300">
-                  <button id="vipminusIcon-${
+                  <button id="bashminusIcon-${
                     partyevents._id
-                  }" class="p-[5px]" type="button"><i class="bx bx-minus"></i></button
-                  ><span id="vipnums-${partyevents._id}">1</span
-                 ><button id="vipplusIcon-${
+                  }" class="cursor-pointer p-[5px]" type="button"><i class="bx bx-minus"></i></button
+                  ><span id="bashnums-${partyevents._id}">1</span
+                 ><button id="bashplusIcon-${
                    partyevents._id
-                 }" class="p-[5px]" type="button"><i class="bx bx-plus"></i></button>
+                 }" class="cursor-pointer p-[5px]" type="button"><i class="bx bx-plus"></i></button>
                  </p>
                 </div>                
               </div>
@@ -437,7 +441,425 @@ document.addEventListener("DOMContentLoaded", () => {
         </div>`;
 
           bashParty.appendChild(partyCard);
+
+          let bashcount = 1;
+
+          const ticketprice = document.getElementById(
+            `bashprice-${partyevents._id}`
+          );
+          const bashplus = document.getElementById(
+            `bashplusIcon-${partyevents._id}`
+          );
+          const bashminus = document.getElementById(
+            `bashminusIcon-${partyevents._id}`
+          );
+          const bashnums = document.getElementById(
+            `bashnums-${partyevents._id}`
+          );
+
+          bashplus.addEventListener("click", () => {
+            bashcount++;
+            bashnums.textContent = bashcount;
+            ticketprice.textContent = "₦" + partyevents.ticket * bashcount;
+          });
+
+          bashminus.addEventListener("click", () => {
+            if (bashcount > 1) {
+              bashcount--;
+            }
+            bashnums.textContent = bashcount;
+            ticketprice.textContent = "₦" + partyevents.ticket * bashcount;
+          });
         });
       });
   }
+
+  // movie event
+  const movieEvents = document.getElementById("movieEvents");
+
+  if (movieEvents) {
+    fetch("http://localhost:5000/api/movieevents")
+      .then((res) => res.json())
+      .then((movieEventsCard) => {
+        movieEvents.innerHTML = "";
+
+        movieEventsCard.events.forEach((mainMovies) => {
+          const mainMoviesCard = document.createElement("div");
+          mainMoviesCard.innerHTML = `
+          <div class="bg-neutral-900 h-auto pb-[10px] ">
+
+          <div class="w-[100%] h-[200px]">
+            <img src="${mainMovies.image}" alt="${
+            mainMovies.title
+          }" class="w-full h-[200px]">
+          </div>
+
+          <div class="flex-col justify-center pt-[20px] pl-[10px] item-align h-full">
+            <h2 class="text-1xl font-serif font-bold text-red-100">${
+              mainMovies.title
+            }</h2>
+            <h5 class="text-base font-sans italic text-gray-100 ">${
+              mainMovies.description
+            }</h5>
+
+            <div class="flex justify-between items-center pr-[10px] mt-[10px]" >
+            <h6 class="text-gray-100 font-mons text-xs font-bold">Time: ${
+              mainMovies.time
+            }</h6>
+            <h6 class="text-gray-100 font-mons text-xs font-bold"> Date: ${new Date(
+              mainMovies.date
+            ).toLocaleDateString()}</h6>
+          </div>
+
+          <button onclick="openModal('${
+            mainMovies._id
+          }')" class="flex justify-center items-center bg-red-100 w-[100px] p-[10px] mt-[20px] rounded-3xl ml-auto mr-auto text-sm font-sans text-gray-500 font-bold hover:bg-black hover:text-white" type="button"> Buy Ticket</button>
+        </div>
+
+      
+        
+        
+        <div id="modal-${
+          mainMovies._id
+        }" class="hidden fixed inset-0 bg-black/60  flex justify-center items-center z-50">
+          <div class="bg-white  md:w-[500px] h-auto">
+            <div class="flex relative justify-between items-center bg-black">
+
+              <div class="w-[90%] flex flex-col justify-center items-center">
+               <h3 class="text-red-100 text-center text-sm md:text-1xl font-bold font-mons mt-[10px]">${
+                 mainMovies.title
+               }</h3>
+                <h6 class="text-gray-400 mt-[5px] font-sans italic text-sm">
+                <span class="pr-[5px] text-xs"><i class='bx bx-time'></i></span>${
+                  mainMovies.time
+                }
+                </h6>
+                <h5 class="text-gray-300 font-bold pb-[15px] text-center mt-[5px] text-sm md:text-base font-serif"><span class="text-xs md:text-base">Venue:</span> ${
+                  mainMovies.venue
+                }</h5>
+              </div>
+
+              <div class="w-[10%] ">
+                <button class="text-red-100 absolute text-3xl top-2 hover:text-gray-400 cursor-pointer" type="button" onclick="closeModal('${
+                  mainMovies._id
+                }')"><i class='bx bx-x'></i></button>
+              </div>
+              
+            </div>
+
+            <div class="flex flex-col bg-neutral-900 p-[15px]">
+              <div class="w-[80%] mx-auto">
+                <h2 class="text-2xl text-center font-mons font-bold text-red-100">Movie Information</h2>
+                <p class="mt-[3px] text-center text-sm md:text-base text-gray-400 font-sans">${
+                  mainMovies.details
+                } </p>
+              
+              </div>
+
+              <div class= w-[30%]>
+                <h2 class="text-sm md:text-1xl font-mons font-bold text-red-100 mt-[10px]">Ticket Price</h2>
+
+                <div class="mt-[10px] shadow-[0_0_10px_0_theme('colors.red.100')]">
+                  <p class="pl-[10px] text-sm text-gray-300 font-semibold font-sans">Price: <span class=" italic" id="movieprice-${
+                    mainMovies._id
+                  }">₦${mainMovies.ticket}</span></p>
+                  <p class="pl-[10px] pb-[3px] text-gray-300">
+                  <button id="movieminusIcon-${
+                    mainMovies._id
+                  }" class=" cursor-pointer p-[5px]" type="button"><i class="bx bx-minus"></i></button
+                  ><span id="movienums-${mainMovies._id}">1</span
+                 ><button id="movieplusIcon-${
+                   mainMovies._id
+                 }" class="cursor-pointer p-[5px]" type="button"><i class="bx bx-plus"></i></button>
+                 </p>
+                </div>                
+              </div>
+            </div>
+
+            <div class="bg-neutral-900 pb-[30px] pt-[20px]">
+              <button class="flex justify-center items-center bg-red-100 w-[150px] p-[10px] rounded-3xl ml-auto mr-auto text-sm font-sans text-gray-500 font-bold hover:bg-black hover:text-white" type="button">Pay For Ticket</button>
+            </div>
+          </div>
+        </div>`;
+
+          movieEvents.appendChild(mainMoviesCard);
+
+          let movieCount = 1;
+
+          const eventTicket = document.getElementById(
+            `movieprice-${mainMovies._id}`
+          );
+          const eventPlus = document.getElementById(
+            `movieplusIcon-${mainMovies._id}`
+          );
+          const eventMinus = document.getElementById(
+            `movieminusIcon-${mainMovies._id}`
+          );
+          const eventNums = document.getElementById(
+            `movienums-${mainMovies._id}`
+          );
+
+          eventPlus.addEventListener("click", () => {
+            movieCount++;
+            eventNums.textContent = movieCount;
+            eventTicket.textContent = "₦" + mainMovies.ticket * movieCount;
+          });
+
+          eventMinus.addEventListener("click", () => {
+            if (movieCount > 1) {
+              movieCount--;
+            }
+            eventNums.textContent = movieCount;
+            eventTicket.textContent = "₦" + mainMovies.ticket * movieCount;
+          });
+        });
+      });
+  }
+
+  // music event
+
+  const musicEvents = document.getElementById("musicEvents");
+
+  if (musicEvents) {
+    fetch("http://localhost:5000/api/musicevents")
+      .then((res) => res.json())
+      .then((musicevents) => {
+        musicEvents.innerHTML = "";
+
+        musicevents.events.forEach((mainmusicEvents) => {
+          const musiceventCard = document.createElement("div");
+
+          musiceventCard.innerHTML = `
+          <div class="bg-neutral-900 h-auto pb-[10px] ">
+
+  <div class="w-[100%] h-[200px]">
+    <img src="${mainmusicEvents.image}" alt="${
+            mainmusicEvents.title
+          }" class="w-full h-[200px]">
+  </div>
+
+  <div class="flex-col justify-center pt-[20px] pl-[10px] item-align h-full">
+    <h2 class="text-1xl font-serif font-bold text-red-100">${
+      mainmusicEvents.title
+    }</h2>
+    <h5 class="text-sm font-sans italic text-gray-100 ">${
+      mainmusicEvents.description
+    }</h5>
+
+    <div class="flex justify-between items-center pr-[10px] mt-[10px]">
+      <h6 class="text-gray-100 font-mons text-xs font-bold">Time: ${
+        mainmusicEvents.time
+      }</h6>
+      <h6 class="text-gray-100 font-mons text-xs font-bold">Date: ${new Date(
+        mainmusicEvents.date
+      ).toLocaleDateString()}</h6>
+    </div>
+
+    <button onclick="openModal('${
+      mainmusicEvents._id
+    }')" class="flex justify-center items-center bg-red-100 w-[100px] p-[10px] mt-[20px] rounded-3xl ml-auto mr-auto text-sm font-sans text-gray-500 font-bold hover:bg-black hover:text-white" type="button">Buy Ticket</button>
+  </div>
+
+  <div id="modal-${
+    mainmusicEvents._id
+  }" class="hidden fixed inset-0 bg-black/60 flex justify-center items-center z-50">
+    <div class="bg-white md:w-[500px] h-auto">
+      <div class="flex relative justify-between items-center bg-black">
+
+        <div class="w-[90%] flex flex-col justify-center items-center">
+          <h3 class="text-red-100 text-sm md:text-2xl font-bold font-mons mt-[10px]">${
+            mainmusicEvents.title
+          }</h3>
+          <h6 class="text-gray-400 mt-[5px] font-sans italic text-sm">
+            <span class="pr-[5px] text-xs"><i class='bx bx-time'></i></span>${
+              mainmusicEvents.time
+            }
+          </h6>
+          <h5 class="text-gray-300 font-bold pb-[15px] text-center mt-[5px] text-sm md:text-base font-serif">
+            <span class="text-xs md:text-base">Venue:</span> ${
+              mainmusicEvents.venue
+            }
+          </h5>
+        </div>
+
+        <div class="w-[10%]">
+          <button class="text-red-100 absolute text-3xl top-2 hover:text-gray-400 cursor-pointer" type="button" onclick="closeModal('${
+            mainmusicEvents._id
+          }')"><i class='bx bx-x'></i></button>
+        </div>
+      </div>
+
+      <div class="flex flex-col bg-neutral-900 p-[15px]">
+        <div class="w-[80%] mx-auto">
+          <h2 class="text-2xl text-center font-mons font-bold text-red-100">Music Information</h2>
+          <p class="mt-[3px] text-center text-sm md:text-base text-gray-400 font-sans">${
+            mainmusicEvents.details
+          }</p>
+        </div>
+
+        <div class="w-[100%]">
+          <h2 class="text-sm md:text-1xl font-mons font-bold text-red-100 mt-[10px]">Ticket Price</h2>
+
+          <div class="mt-[10px] shadow-[0_0_10px_0_theme('colors.red.100')]">
+            <p class="pl-[10px] text-sm text-gray-300 font-semibold font-sans">
+              Price: <span class="italic" id="musicprice-${
+                mainmusicEvents._id
+              }">₦${mainmusicEvents.ticket}</span>
+            </p>
+            <p class="pl-[10px] pb-[3px] text-gray-300">
+              <button id="musicminusIcon-${
+                mainmusicEvents._id
+              }" class="cursor-pointer p-[5px]" type="button"><i class="bx bx-minus"></i></button>
+              <span id="musicnums-${mainmusicEvents._id}">1</span>
+              <button id="musicplusIcon-${
+                mainmusicEvents._id
+              }" class="cursor-pointer p-[5px]" type="button"><i class="bx bx-plus"></i></button>
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-neutral-900 pb-[30px] pt-[20px]">
+        <button class="flex justify-center items-center bg-red-100 w-[150px] p-[10px] rounded-3xl ml-auto mr-auto text-sm font-sans text-gray-500 font-bold hover:bg-black hover:text-white" type="button">Pay For Ticket</button>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+          musicEvents.appendChild(musiceventCard);
+
+          let musicCount = 1;
+
+          const muscicTicket = document.getElementById(
+            `musicprice-${mainmusicEvents._id}`
+          );
+          const musicPlus = document.getElementById(
+            `musicplusIcon-${mainmusicEvents._id}`
+          );
+          const musicMinus = document.getElementById(
+            `musicminusIcon-${mainmusicEvents._id}`
+          );
+          const musicNums = document.getElementById(
+            `musicnums-${mainmusicEvents._id}`
+          );
+
+          musicPlus.addEventListener("click", () => {
+            musicCount++;
+            musicNums.textContent = musicCount;
+            muscicTicket.textContent =
+              "₦" + mainmusicEvents.ticket * musicCount;
+          });
+
+          musicMinus.addEventListener("click", () => {
+            if (musicCount > 1) {
+              musicCount--;
+            }
+            musicNums.textContent = musicCount;
+            muscicTicket.textContent =
+              "₦" + mainmusicEvents.ticket * musicCount;
+          });
+        });
+      });
+  }
+
+  // contact page
+
+  const contact = [
+    {
+      name: "email",
+      value: "salvationazuh@gmail.com",
+      icon: "bx bx-envelope",
+      link: "mailto:salvationazuh@gmail.com",
+    },
+    {
+      name: "phone",
+      value: "+2348131933895",
+      icon: "bx bx-phone",
+      link: "tel:+2348131933895",
+    },
+    {
+      name: "Office address",
+      value: "No 7 Vincent street, Shomolu Lagos, Nigeria",
+      icon: "bx bx-map",
+      link: "https://www.google.com/maps?q=9+Vincent+St,+Igbobi,+Lagos+101245,+Lagos",
+    },
+    {
+      name: "Live Chat",
+      value: "You can chat with us",
+      icon: "bx bx-chat",
+      link: "https://wa.me/2348131933895",
+    },
+  ];
+
+  const linksMain = document.getElementById("linksMain");
+
+  contact.forEach((items) => {
+    const newLinks = document.createElement("div");
+    newLinks.innerHTML = `
+        <a href="${items.link}" target="_blank" class="flex items-center gap-4 mt-[20px] hover:bg-neutral-800 w-[80%]">
+           <i class="${items.icon} text-red-100 text-4xl "></i>
+         <div>
+          <h4 class="text-2xl text-red-100 font-mons font-semibold">
+            ${items.name}
+         </h4>
+          <p class="text-gray-400 text-base font-serif mt-[10px]">
+          ${items.value} 
+          </p>
+         </div>         
+        </a>
+    `;
+    linksMain.appendChild(newLinks);
+  });
+
+  // contact form validation
+
+  const form = document.querySelector("form");
+  const errorMessage = document.getElementById("errorMessage");
+  const successMessage = document.getElementById("successMessage");
+
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+
+    errorMessage.textContent = "";
+    successMessage.textContent = "";
+
+    const name = document.getElementById("name").value.trim();
+    const email = document.getElementById("email").value.trim();
+    const subject = document.getElementById("subject").value.trim();
+    const message = document.getElementById("message").value.trim();
+
+    if (!name || !email || !subject || !message) {
+      errorMessage.textContent = "Please fill the required area";
+      return;
+    } else if (!/\S+@\S+\.\S+/.test(email)) {
+      errorMessage.textContent = `please use a vaild email address`;
+      return;
+    } else {
+      fetch("http://localhost:5000/api/send-email", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name,
+          email,
+          subject,
+          message,
+        }),
+      })
+        .then((res) => {
+          if (!res.ok) throw new Error("Failed to send message");
+          return res.json();
+        })
+        .then((data) => {
+          successMessage.textContent = "Message sent Successfully!";
+          form.reset();
+        })
+        .catch((err) => {
+          console.error(err);
+          errorMessage.textContent =
+            "An error occurred while sending the message";
+        });
+    }
+  });
 });
