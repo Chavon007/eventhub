@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>EventHub</title>
+    <link href="../src/output.css" rel="stylesheet" />
+    <link
+      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+    />
+  </head>
+  <body>
+    <div class="container bg-black h-auto w-full pt-[10px] pb-[30px]">
+      <!--sign up header-->
+      <div class="w-[60%] mx-auto lg:flex lg:justify-between lg:items-center">
+        <h4
+          class="text-center text-red-100 text-3xl font-bold font-mons italic"
+        >
+          EventHub
+        </h4>
+        <p
+          class="flex justify-center items-center lg:w-[40%] text-base mt-[10px] text-gray-400 font-sans font-semibold"
+        >
+          Already have an account?
+          <span
+            class="text-xs text-red-100 underline italic pl-[5px] hover:text-gray-400"
+            ><a href="../login.html">Sign In</a></span
+          >
+        </p>
+      </div>
+
+      <!--sign up details-->
+      <div
+        class="bg-neutral-900 w-[90%] md:w-[60%] h-auto mt-[30px] p-[20px] mx-auto"
+      >
+        <div class="flex-col mt-[30px]">
+          <!--sign up details header-->
+          <div class="text-center">
+            <h3 class="text-2xl font-bold text-gray-400 font-serif">
+              Join the
+              <span class="text-red-100 font-bold text-2xl">Experience</span>
+            </h3>
+            <p
+              class="max-w-[450px] text-sm mt-[10px] text-gray-400 font-serif mx-auto"
+            >
+              Discover amazing events, connect with your community, and create
+              unforgettable memories.
+            </p>
+          </div>
+
+          <!--form-->
+          <div class="flex-col">
+            <form id="signup" class="flex-col">
+              <div>
+                <p
+                  id="errorMessageSignUp"
+                  class="text-red-400 text-sm font-serif h-[12px]"
+                ></p>
+                <p
+                  id="successMessageSignUp"
+                  class="text-green-400 text-sm font-serif h-[12px]"
+                ></p>
+              </div>
+              <div class="flex-col">
+                <label
+                  class="text-red-100 font-semibold font-serif text-1xl pb-[10px]"
+                  for="name"
+                  >First Name</label
+                >
+                <br />
+                <input
+                  class="bg-black rounded-1xl w-[300px] md:w-[420px] lg:w-[700px] p-[10px] placeholder:text-xs placeholder:font-serif focus:outline-none text-gray-400"
+                  type="text"
+                  id="firstName"
+                  name="name"
+                  placeholder="Enter Your First Name"
+                />
+                <br />
+                <label
+                  class="text-red-100 font-semibold font-serif text-1xl pb-[10px]"
+                  for="name"
+                  >Last Name</label
+                >
+                <br />
+                <input
+                  class="bg-black rounded-1xl w-[300px] md:w-[420px] lg:w-[700px] p-[10px] placeholder:text-xs placeholder:font-serif focus:outline-none text-gray-400"
+                  type="text"
+                  id="lastName"
+                  name="name"
+                  placeholder="Enter Your Last Name"
+                />
+              </div>
+
+              <label
+                class="text-red-100 font-semibold font-serif text-1xl pb-[10px]"
+                for="email"
+                >Email</label
+              >
+              <br />
+              <input
+                class="bg-black rounded-1xl w-[300px] md:w-[420px] lg:w-[700px] p-[10px] placeholder:text-xs placeholder:font-serif focus:outline-none text-gray-400"
+                type="email"
+                id="emailAddress"
+                name="email"
+                placeholder="Enter Your Email Address"
+              />
+              <br />
+              <label
+                class="text-red-100 font-semibold font-serif text-1xl pb-[10px]"
+                for="number"
+                >Phone</label
+              >
+              <br />
+              <input
+                class="bg-black rounded-1xl w-[300px] md:w-[420px] lg:w-[700px] p-[10px] placeholder:text-xs placeholder:font-serif focus:outline-none text-gray-400"
+                type="tel"
+                id="phoneNumber"
+                name="phone"
+                placeholder="+23480 0000 0000"
+              />
+              <br />
+              <label
+                class="text-red-100 font-semibold font-serif text-1xl pb-[10px]"
+                for="password"
+                >Password</label
+              >
+              <br />
+              <input
+                class="bg-black rounded-1xl w-[300px] md:w-[420px] lg:w-[700px] p-[10px] placeholder:text-xs placeholder:font-serif focus:outline-none text-gray-400"
+                type="password"
+                id="password"
+                name="password"
+                placeholder="Enter Password"
+              />
+              <br />
+              <label
+                class="text-red-100 font-semibold font-serif text-1xl pb-[10px]"
+                for="confirmPassword"
+                >Confirm Password</label
+              >
+              <br />
+              <input
+                class="bg-black rounded-1xl w-[300px] md:w-[420px] lg:w-[700px] p-[10px] placeholder:text-xs placeholder:font-serif focus:outline-none text-gray-400"
+                type="password"
+                id="confirmPassword"
+                name="password"
+                placeholder="Confirm Password"
+              />
+              <br />
+
+              <label
+                class="text-xs text-gray-400 font-sans flex items-center mt-[10px]"
+                for="agree"
+              >
+                <input type="checkbox" id="agree" class="mr-1" /> I agree to the
+                <span class="text-red-100 underline text-sm"
+                  >Terms of Service</span
+                >
+                and
+                <span class="text-red-100 underline text-sm"
+                  >Privacy Policy</span
+                >
+              </label>
+              <br />
+
+              <button
+                class="bg-red-100 w-[150px] mb-[20px] p-[10px] mt-[20px] rounded-3xl ml-auto mr-auto text-base font-sans text-gray-500 font-bold hover:bg-black hover:text-white flex justify-center"
+                id="btn1"
+                type="submit"
+              >
+                Create Account
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="signup.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+  </body>
+</html>
