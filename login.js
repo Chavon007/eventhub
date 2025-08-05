@@ -21,9 +21,6 @@ document.addEventListener("DOMContentLoaded", () => {
     } else if (!/\S+@\S+\.\S+/.test(loginEmail)) {
       errorMessageLogin.textContent = "please use a vaild email address";
       return;
-    } else if (!/^(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*]).+$/.test(password)) {
-      errorMessageLogin.textContent =
-        "Password must contain at least one uppercase letter, one number, and one special character";
     } else {
       fetch("http://localhost:5000/api/login", {
         method: "POST",
@@ -35,11 +32,11 @@ document.addEventListener("DOMContentLoaded", () => {
           password,
         }),
       })
-        .then((res) => {
-          if (!res.ok) throw new Error("Login failed");
-          return res.json();
-        })
-        .then((data) => {
+        .then(async (res) => {
+          const data = await res.json();
+          if (!res.ok) {
+            throw new Error(data.message || "Login failed");
+          }
           successMessageLogin.textContent = data.message || "Login Successful";
           loginForm.reset();
         })
