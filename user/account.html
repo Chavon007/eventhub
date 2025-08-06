@@ -51,10 +51,17 @@
             </li>
             <li class="pl-[50px] pr-[20px]">
               <a
-                href=""
+                href="../contact/contact.html"
                 class="mainlinks text-red-100 hover:text-gray-400 text-base font-['Times_New_Roman']"
                 >Contact</a
               >
+            </li>
+            <li class="pl-[50px] pr-[20px]">
+              <a
+                href="../signup.html"
+                class="mainlinks text-red-100 hover:text-gray-400 text-base font-['Times_New_Roman']"
+                ><i class="bx bx-user-circle text-2xl"></i
+              ></a>
             </li>
           </ul>
         </div>
@@ -71,139 +78,20 @@
         </div>
       </div>
     </nav>
+    <!--Account section-->
+    <div class="">
+      <div class="">
+        <!--account nav-->
+        <div id="accountNavbar">
+          <h3 id="welcomeMessage"></h3>
 
-    <!--Contact page-->
-    <div class="h-auto pb-[40px] bg-black w-[100%]">
-      <div class="w-[90%] mx-auto pt-[30px]">
-        <!--contact header-->
-        <div class="pt-[30px] text-center">
-          <h2 class="text-red-100 font-bold font-serif text-2xl md:text-4xl">
-            Get In Touch
-          </h2>
-          <p
-            class="text-gray-400 text-sm italic font-sans font-semibold mt-[10px]"
-          >
-            We'd love to hear from you. Send us a message and we'll respond as
-            soon as possible.
-          </p>
+          <ul>
+            <li><a href="../event/event.html">Browse Events</a></li>
+            <button id="logout" type="button">Logout</button>
+          </ul>
         </div>
 
-        <!--email and linxks-->
-
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-[30px]">
-          <!--links-->
-          <div class="bg-neutral-900 h-[auto] pb-[20px] lg:h-[100vh]">
-            <div class="links-header pl-[30px] mt-[20px]">
-              <h3
-                class="text-red-100 text-2xl md:text-3xl font-bold font-serif"
-              >
-                Contact Information
-              </h3>
-            </div>
-
-            <div
-              id="linksMain"
-              class="flex flex-col pl-[30px] gap-4 mt-[20px]"
-            ></div>
-          </div>
-
-          <!--email-->
-          <div class="bg-neutral-900">
-            <form class="flex flex-col w-[90%] mx-auto pt-[10px]">
-              <div class="error">
-                <p
-                  id="errorMessage"
-                  class="text-red-400 text-sm font-serif h-[12px]"
-                ></p>
-                <p
-                  id="successMessage"
-                  class="text-green-400 text-sm font-serif h-[12px]"
-                ></p>
-              </div>
-
-              <label
-                class="text-red-100 font-serif text-1xl pb-[5px]"
-                for="name"
-                >Full Name:</label
-              >
-              <input
-                class="bg-black rounded-1xl w-[300px] md:w-[300px] lg:w-[500px] p-[10px] placeholder:text-xs placeholder:font-serif focus:outline-none text-gray-400"
-                id="name"
-                name="name"
-                type="text"
-                placeholder="Enter Your Full Name"
-              />
-              <label
-                class="text-red-100 font-serif text-1xl pb-[5px]"
-                for="email"
-              >
-                Email Address</label
-              >
-              <input
-                class="bg-black rounded-1xl w-[300px] md:w-[300px] lg:w-[500px] p-[10px] placeholder:text-xs placeholder:font-serif focus:outline-none text-gray-400"
-                id="email"
-                type="email"
-                name="email"
-                placeholder="Enter Your Email Address"
-              />
-
-              <label
-                class="text-red-100 font-serif text-1xl pb-[5px]"
-                for="subject"
-                >Subject</label
-              >
-              <input
-                class="bg-black rounded-1xl w-[300px] md:w-[300px] lg:w-[500px] p-[10px] placeholder:text-xs placeholder:font-serif focus:outline-none text-gray-400"
-                id="subject"
-                name="subject"
-                type="text"
-                placeholder="Enter Subject"
-              />
-
-              <textarea
-                class="bg-black mt-[15px] h-[200px] rounded-1xl w-[300px] md:w-[300px] lg:w-[500px] p-[10px] placeholder:text-xs placeholder:font-serif focus:outline-none text-gray-400"
-                name="message"
-                id="message"
-                placeholder="Enter Message"
-              ></textarea>
-
-              <button
-                class="bg-red-100 w-[150px] mb-[30px] p-[10px] mt-[20px] rounded-3xl ml-auto mr-auto text-base font-sans text-gray-500 font-bold hover:bg-black hover:text-white"
-                type="submit"
-              >
-                Send message
-              </button>
-            </form>
-          </div>
-        </div>
-
-        <!--map-->
-
-        <div class="bg-neutral-900 mt-[60px]">
-          <!--mapheader-->
-          <div class="map-header text-center pt-[30px]">
-            <h3 class="text-red-100 text-3xl font-bold font-mons">Find Us</h3>
-            <p
-              class="text-gray-400 mt-[10px] mb-[10px] font-serif italic text-sm md:text-base"
-            >
-              Visit our office or attend one of our events at our main location.
-            </p>
-          </div>
-
-          <!--Map-->
-          <div class="pb-[40px]">
-            <iframe
-              class="mx-auto"
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3963.9648206222682!2d3.3734603749929866!3d6.526127193466492!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x103b8dab10b76c13%3A0x3e9affaae4d76f52!2s9%20Vincent%20St%2C%20Igbobi%2C%20Lagos%20101245%2C%20Lagos!5e0!3m2!1sen!2sng!4v1754307180604!5m2!1sen!2sng"
-              width="95%"
-              height="450"
-              style="border: 0"
-              allowfullscreen=""
-              loading="lazy"
-              referrerpolicy="no-referrer-when-downgrade"
-            ></iframe>
-          </div>
-        </div>
+        <!--personal events details-->
       </div>
     </div>
 
@@ -407,7 +295,7 @@
         &copy; 2025. All right reserved by EventHub
       </p>
     </div>
-    <script src="../script.js"></script>
+    <script src="./account.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
   </body>
 </html>

@@ -24,6 +24,7 @@ document.addEventListener("DOMContentLoaded", () => {
     } else {
       fetch("http://localhost:5000/api/login", {
         method: "POST",
+        credentials: "include",
         headers: {
           "Content-Type": "application/json",
         },
@@ -39,6 +40,8 @@ document.addEventListener("DOMContentLoaded", () => {
           }
           successMessageLogin.textContent = data.message || "Login Successful";
           loginForm.reset();
+
+          window.location.href = "home.html";
         })
         .catch((err) => {
           errorMessageLogin.textContent = err.message || "Failed to Login";
