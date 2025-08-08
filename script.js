@@ -263,7 +263,7 @@ document.addEventListener("DOMContentLoaded", () => {
             </div>
 
             <div class="bg-neutral-900 pb-[30px] pt-[20px]">
-              <button class="flex justify-center items-center bg-red-100 w-[150px] p-[10px] rounded-3xl ml-auto mr-auto text-sm font-sans text-gray-500 font-bold hover:bg-black hover:text-white" type="button">Pay For Ticket</button>
+              <button id="payment" class="flex justify-center items-center bg-red-100 w-[150px] p-[10px] rounded-3xl ml-auto mr-auto text-sm font-sans text-gray-500 font-bold hover:bg-black hover:text-white" type="button">Pay For Ticket</button>
             </div>
           </div>
         </div>`;
@@ -279,6 +279,8 @@ document.addEventListener("DOMContentLoaded", () => {
             `vipplusIcon-${events._id}`
           );
           const vipnumber = document.getElementById(`vipnums-${events._id}`);
+
+          const payment = document.getElementById("payment");
 
           vipplusicon.addEventListener("click", () => {
             vipcount++;
@@ -323,6 +325,26 @@ document.addEventListener("DOMContentLoaded", () => {
             }
             regularNums.textContent = regularcount;
             regularPrice.textContent = "€" + events.regular * regularcount;
+          });
+
+          payment.addEventListener("click", () => {
+            fetch("http://localhost:5000/api/ticket", {
+              method: "GET",
+              credentials: "include",
+              headers: {
+                "Content-Type": "application/json",
+              },
+            })
+              .then((res) => {
+                if (!res.ok) throw new Error("Failed to fetch");
+                return res.json();
+              })
+              .then((ticket) => {
+                paymentPlatform(ticket);
+              })
+              .catch((err) => {
+                alert("unable to fetch ticket" + err.message);
+              });
           });
         });
       });
@@ -435,7 +457,7 @@ document.addEventListener("DOMContentLoaded", () => {
             </div>
 
             <div class="bg-neutral-900 pb-[30px] pt-[20px]">
-              <button class="flex justify-center items-center bg-red-100 w-[150px] p-[10px] rounded-3xl ml-auto mr-auto text-sm font-sans text-gray-500 font-bold hover:bg-black hover:text-white" type="button">Pay For Ticket</button>
+              <button id="payment" class="flex justify-center items-center bg-red-100 w-[150px] p-[10px] rounded-3xl ml-auto mr-auto text-sm font-sans text-gray-500 font-bold hover:bg-black hover:text-white" type="button">Pay For Ticket</button>
             </div>
           </div>
         </div>`;
@@ -457,6 +479,8 @@ document.addEventListener("DOMContentLoaded", () => {
             `bashnums-${partyevents._id}`
           );
 
+          const payment = document.getElementById("payment");
+
           bashplus.addEventListener("click", () => {
             bashcount++;
             bashnums.textContent = bashcount;
@@ -469,6 +493,26 @@ document.addEventListener("DOMContentLoaded", () => {
             }
             bashnums.textContent = bashcount;
             ticketprice.textContent = "₦" + partyevents.ticket * bashcount;
+          });
+
+          payment.addEventListener("click", () => {
+            fetch("http://localhost:5000/api/ticket", {
+              method: "GET",
+              credentials: "include",
+              headers: {
+                "Content-Type": "application/json",
+              },
+            })
+              .then((res) => {
+                if (!res.ok) throw new Error("Failed to fetch ticket");
+                return res.json();
+              })
+              .then((ticket) => {
+                paymentPlatform(ticket);
+              })
+              .catch((err) => {
+                alert("Unable to fetch ticket" + err.message);
+              });
           });
         });
       });
@@ -577,7 +621,7 @@ document.addEventListener("DOMContentLoaded", () => {
             </div>
 
             <div class="bg-neutral-900 pb-[30px] pt-[20px]">
-              <button class="flex justify-center items-center bg-red-100 w-[150px] p-[10px] rounded-3xl ml-auto mr-auto text-sm font-sans text-gray-500 font-bold hover:bg-black hover:text-white" type="button">Pay For Ticket</button>
+              <button id="payment" class="flex justify-center items-center bg-red-100 w-[150px] p-[10px] rounded-3xl ml-auto mr-auto text-sm font-sans text-gray-500 font-bold hover:bg-black hover:text-white" type="button">Pay For Ticket</button>
             </div>
           </div>
         </div>`;
@@ -598,6 +642,7 @@ document.addEventListener("DOMContentLoaded", () => {
           const eventNums = document.getElementById(
             `movienums-${mainMovies._id}`
           );
+          const payment = document.getElementById("payment");
 
           eventPlus.addEventListener("click", () => {
             movieCount++;
@@ -611,6 +656,24 @@ document.addEventListener("DOMContentLoaded", () => {
             }
             eventNums.textContent = movieCount;
             eventTicket.textContent = "₦" + mainMovies.ticket * movieCount;
+          });
+
+          payment.addEventListener("click", () => {
+            fetch("http://localhost:5000/api/ticket", {
+              method: "GET",
+              credentials: "include",
+              headers: { "Content-Type": "ap[lication/json" },
+            })
+              .then((res) => {
+                if (!res.ok) throw new Error("Failed to fetch ticket");
+                return res.json();
+              })
+              .then((ticket) => {
+                paymentPlatform(ticket);
+              })
+              .catch((err) => {
+                alert("unable to fetch ticket" + err.message);
+              });
           });
         });
       });
@@ -720,7 +783,7 @@ document.addEventListener("DOMContentLoaded", () => {
       </div>
 
       <div class="bg-neutral-900 pb-[30px] pt-[20px]">
-        <button class="flex justify-center items-center bg-red-100 w-[150px] p-[10px] rounded-3xl ml-auto mr-auto text-sm font-sans text-gray-500 font-bold hover:bg-black hover:text-white" type="button">Pay For Ticket</button>
+        <button id="payment" class="flex justify-center items-center bg-red-100 w-[150px] p-[10px] rounded-3xl ml-auto mr-auto text-sm font-sans text-gray-500 font-bold hover:bg-black hover:text-white" type="button">Pay For Ticket</button>
       </div>
     </div>
   </div>
@@ -743,6 +806,8 @@ document.addEventListener("DOMContentLoaded", () => {
             `musicnums-${mainmusicEvents._id}`
           );
 
+          const payment = document.getElementById("payment");
+
           musicPlus.addEventListener("click", () => {
             musicCount++;
             musicNums.textContent = musicCount;
@@ -757,6 +822,25 @@ document.addEventListener("DOMContentLoaded", () => {
             musicNums.textContent = musicCount;
             muscicTicket.textContent =
               "₦" + mainmusicEvents.ticket * musicCount;
+          });
+          payment.addEventListener("click", () => {
+            fetch("http://localhost:5000/api/ticket", {
+              method: "GET",
+              credentials: "include",
+              headers: {
+                "Content-Type": "application/json",
+              },
+            })
+              .then((res) => {
+                if (!res.ok) throw new Error("Failed to fetch ticket");
+                return res.json();
+              })
+              .then((ticket) => {
+                paymentPlatform(ticket);
+              })
+              .catch((err) => {
+                alert("Unable to fetch ticket" + err.message);
+              });
           });
         });
       });

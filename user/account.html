@@ -79,19 +79,93 @@
       </div>
     </nav>
     <!--Account section-->
-    <div class="">
-      <div class="">
+    <div class="bg-black w-[100%] h-auto pb-[30px]">
+      <div class="w-[90%] mx-auto pt-[30px]">
         <!--account nav-->
-        <div id="accountNavbar">
-          <h3 id="welcomeMessage"></h3>
+        <div
+          id="accountNavbar"
+          class="bg-neutral-900 flex-col md:flex rounded-3xl md:justify-between md:items-center p-[30px]"
+        >
+          <h3
+            id="welcomeMessage"
+            class="text-red-100 text-center text-1xl italic font-sans font-bold"
+          ></h3>
 
-          <ul>
-            <li><a href="../event/event.html">Browse Events</a></li>
-            <button id="logout" type="button">Logout</button>
+          <ul class="flex w-[100%] mt-[20px] justify-between">
+            <li
+              class="bg-black w-[150px] text-center p-[10px] rounded-3xl text-sm font-sans text-red-100 font-bold hover:bg-red-100 hover:text-gray-400"
+            >
+              <a href="../event/event.html">Browse Events</a>
+            </li>
+            <button
+              id="logout"
+              type="button"
+              class="bg-black w-[150px] text-center p-[10px] rounded-3xl text-sm font-sans text-red-100 font-bold hover:bg-red-100 hover:text-gray-400"
+            >
+              Logout
+            </button>
           </ul>
         </div>
 
         <!--personal events details-->
+
+        <div class="mt-[30px]">
+          <ul
+            id="pDetails"
+            class="grid grid-cols-2 gap-3 p-[10px] md:flex md:justify-between items-center md:p-[20px]"
+          >
+            <li
+              class="flex w-[150px] text-xs md:w-[200px] flex-col text-center bg-neutral-900 p-[20px] rounded-3xl text-gray-400 lg:text-base font-mons"
+            >
+              <span id="attend"></span>Events Attended
+            </li>
+            <li
+              class="flex w-[150px] text-xs md:w-[200px] flex-col text-center bg-neutral-900 p-[20px] rounded-3xl text-gray-400 lg:text-base font-mons"
+            >
+              <span id="spent"></span>Total Spent
+            </li>
+            <li
+              class="flex flex-col text-xs w-[150px] md:w-[200px] text-center bg-neutral-900 p-[20px] rounded-3xl text-gray-400 lg:text-base font-mons"
+            >
+              <span id="ticket"></span>Tickets Purchased
+            </li>
+            <li
+              class="flex flex-col text-xs w-[150px] md:w-[200px] text-center bg-neutral-900 p-[20px] rounded-3xl text-gray-400 lg:text-base font-mons"
+            >
+              <span id="upcoming"></span>Upcoming Events
+            </li>
+          </ul>
+        </div>
+
+        <!-- peresonal activities-->
+
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4 mt-[40px]">
+          <div class="recentTicket bg-neutral-900">
+            <h2
+              class="text-3xl text-red-100 font-mons font-bold text-center pt-[10px]"
+            >
+              Recent Tickets
+            </h2>
+            <div id="recentTicket" class="h-[300px]"></div>
+          </div>
+          <div class="pastEvent bg-neutral-900">
+            <h2
+              class="text-3xl text-red-100 font-mons font-bold text-center pt-[10px]"
+            >
+              Past Events
+            </h2>
+
+            <div id="pastEvent" class="h-[300px]"></div>
+          </div>
+          <div class="recentAct bg-neutral-900">
+            <h2
+              class="text-3xl text-red-100 font-mons font-bold text-center pt-[10px]"
+            >
+              Recent Activity
+            </h2>
+            <div id="recentAct" class="h-[300px]"></div>
+          </div>
+        </div>
       </div>
     </div>
 
