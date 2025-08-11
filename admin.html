@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>EventHub</title>
+    <link href="../src/output.css" rel="stylesheet" />
+    <link
+      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+    />
+  </head>
+  <body>
+    <div>
+      <!--admin navbar-->
+      <div>
+        <h2><i class="bx bx-calendar"></i><span>EventHub Admin</span></h2>
+      </div>
+
+      <div>
+        <ul>
+          <li id="overView"><i class="bx bx-line-chart"></i>Overview</li>
+          <li id="Event"><i class="bx bx-calendar"></i>Events</li>
+          <li id="user"><i class="bx bx-user"></i>Users</li>
+          <li id="setting"><i class="bx bx-cog"></i><span>Settings</span></li>
+        </ul>
+      </div>
+
+      <!--admin content-->
+
+      <div id="pageContent"></div>
+    </div>
+
+    <!--copy right-->
+    <div class="bg-black p-[10px]">
+      <p class="text-center text-base text-gray-400 font-mons">
+        &copy; 2025. All right reserved by EventHub
+      </p>
+    </div>
+    <script src="admin.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+  </body>
+</html>

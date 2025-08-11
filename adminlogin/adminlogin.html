@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>EventHub</title>
+    <link href="../src/output.css" rel="stylesheet" />
+    <link
+      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+    />
+  </head>
+  <body>
+    <div class="container bg-black h-[100vh] w-full pt-[10px] pb-[30px]">
+      <!--sign up header-->
+      <div class="text-center p-[10px]">
+        <h4
+          class="text-center text-red-100 text-3xl font-bold font-mons italic"
+        >
+          EventHub Admin
+        </h4>
+      </div>
+
+      <!--sign up details-->
+      <div
+        class="bg-neutral-900 w-[90%] md:w-[60%] h-auto mt-[20px] p-[20px] mx-auto"
+      >
+        <div class="flex-col mt-[30px]">
+          <!--sign up details header-->
+          <div class="text-center">
+            <h3 class="text-2xl font-bold text-gray-400 font-serif">
+              Welcome
+              <span class="text-red-100 font-bold text-2xl">Back</span>
+            </h3>
+            <p
+              class="max-w-[450px] text-sm mt-[10px] text-gray-400 font-serif mx-auto"
+            >
+              Sign in to access the admin dashboard.
+            </p>
+          </div>
+
+          <!--form-->
+          <div class="flex-col">
+            <form action="" id="adminLoginForm" class="flex-col">
+              <div>
+                <p
+                  id="adminErrorMessageLogin"
+                  class="text-red-400 text-sm font-serif h-[12px]"
+                ></p>
+                <p
+                  id="adminSuccessMessageLogin"
+                  class="text-green-400 text-sm font-serif h-[12px]"
+                ></p>
+              </div>
+
+              <label
+                class="text-red-100 font-semibold font-serif text-1xl pb-[10px]"
+                for="username"
+                >Username</label
+              >
+              <br />
+              <input
+                class="bg-black rounded-1xl w-[300px] md:w-[420px] lg:w-[700px] p-[10px] placeholder:text-xs placeholder:font-serif focus:outline-none text-gray-400"
+                type="text"
+                id="username"
+                name="username"
+                placeholder="Enter Your username"
+              />
+              <br />
+
+              <label
+                class="text-red-100 font-semibold font-serif text-1xl pb-[10px]"
+                for="password"
+                >Password</label
+              >
+              <br />
+              <input
+                class="bg-black rounded-1xl w-[300px] md:w-[420px] lg:w-[700px] p-[10px] placeholder:text-xs placeholder:font-serif focus:outline-none text-gray-400"
+                type="password"
+                id="passwordLogin"
+                name="password"
+                placeholder="Enter Password"
+              />
+              <br />
+
+              <div
+                class="flex items-center justify-between items-center w-[700px] mt-[10px]"
+              >
+                <label class="flex items-center">
+                  <input type="checkbox" id="rememberMe" class="mr-1" />
+                  <span class="text-white text-sm">Remember me</span>
+                </label>
+                <a href="#" class="text-red-100 underline text-sm"
+                  >Forgot Password?</a
+                >
+              </div>
+              <br />
+
+              <button
+                class="bg-red-100 w-[150px] mb-[20px] p-[10px] mt-[20px] rounded-3xl ml-auto mr-auto text-base font-sans text-gray-500 font-bold hover:bg-black hover:text-white flex justify-center"
+                id="adminBtn2"
+                type="submit"
+              >
+                Sign In
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="./adminlogin.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+  </body>
+</html>
