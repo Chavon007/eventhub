@@ -52,8 +52,6 @@ document.addEventListener("DOMContentLoaded", () => {
       return res.json();
     })
     .then((data) => {
-      console.log("Full data:", data); // Check what you're getting
-      console.log("Recent tickets:", data.recentTicket);
       document.getElementById("attend").textContent = data.eventsAttended;
       document
         .getElementById("attend")

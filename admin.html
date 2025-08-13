@@ -15,24 +15,44 @@
     />
   </head>
   <body>
-    <div>
+    <div class="bg-black h-[105vh] w-full md:flex justify-between pb-[20px]">
       <!--admin navbar-->
-      <div>
-        <h2><i class="bx bx-calendar"></i><span>EventHub Admin</span></h2>
-      </div>
 
-      <div>
-        <ul>
-          <li id="overView"><i class="bx bx-line-chart"></i>Overview</li>
-          <li id="Event"><i class="bx bx-calendar"></i>Events</li>
-          <li id="user"><i class="bx bx-user"></i>Users</li>
-          <li id="setting"><i class="bx bx-cog"></i><span>Settings</span></li>
+      <div class="w-[40%] flex-col pt-[30px] pl-[30px]">
+        <h2 class="text-white">
+          <i class="bx bx-calendar text-red-100 text-2xl"></i
+          ><span class="text-red-100 text-2xl font-bold font-serif pl-[20px]"
+            >EventHub Admin</span
+          >
+        </h2>
+        <ul class="mt-[40px]">
+          <li
+            id="overView"
+            class="text-gray-400 text-1xl font-sans font-bold cursor-pointer p-[30px]"
+          >
+            <i class="bx bx-line-chart pr-[20px]"></i>Overview
+          </li>
+          <li
+            id="Event"
+            class="text-gray-400 text-1xl font-sans font-bold cursor-pointer p-[30px]"
+          >
+            <i class="bx bx-calendar pr-[20px]"></i>Events
+          </li>
+          <li
+            id="user"
+            class="text-gray-400 text-1xl font-sans font-bold cursor-pointer p-[30px]"
+          >
+            <i class="bx bx-user pr-[20px]"></i>Users
+          </li>
         </ul>
       </div>
 
       <!--admin content-->
 
-      <div id="pageContent"></div>
+      <div
+        id="pageContent"
+        class="w-[100%] bg-neutral-900 pl-[30px] pt-[30px] pb-[20px] h-auto overflow-y-auto"
+      ></div>
     </div>
 
     <!--copy right-->
