@@ -457,7 +457,9 @@ document.addEventListener("DOMContentLoaded", () => {
             </div>
 
             <div class="bg-neutral-900 pb-[30px] pt-[20px]">
-              <button id="payment" class="flex justify-center items-center bg-red-100 w-[150px] p-[10px] rounded-3xl ml-auto mr-auto text-sm font-sans text-gray-500 font-bold hover:bg-black hover:text-white" type="button">Pay For Ticket</button>
+              <button id="payment-${
+                partyevents._id
+              }" class="flex justify-center items-center bg-red-100 w-[150px] p-[10px] rounded-3xl ml-auto mr-auto text-sm font-sans text-gray-500 font-bold hover:bg-black hover:text-white" type="button">Pay For Ticket</button>
             </div>
           </div>
         </div>`;
@@ -479,7 +481,7 @@ document.addEventListener("DOMContentLoaded", () => {
             `bashnums-${partyevents._id}`
           );
 
-          const payment = document.getElementById("payment");
+          const payment = document.getElementById(`payment-${partyevents._id}`);
 
           bashplus.addEventListener("click", () => {
             bashcount++;
@@ -496,22 +498,30 @@ document.addEventListener("DOMContentLoaded", () => {
           });
 
           payment.addEventListener("click", () => {
-            fetch("http://localhost:5000/api/ticket", {
-              method: "GET",
+            fetch("http://localhost:5000/api/pay", {
+              method: "POST",
               credentials: "include",
               headers: {
                 "Content-Type": "application/json",
               },
+              body: JSON.stringify({
+                amount: partyevents.ticket * bashcount,
+                eventId: partyevents._id,
+                eventModel: "bashPartyEvents",
+                quantity: bashcount,
+              }),
             })
               .then((res) => {
-                if (!res.ok) throw new Error("Failed to fetch ticket");
+                if (!res.ok) throw new Error("Failed to Start payment");
                 return res.json();
               })
-              .then((ticket) => {
-                paymentPlatform(ticket);
+              .then((data) => {
+                if (data.authorization_url) {
+                  window.location.href = data.authorization_url;
+                }
               })
               .catch((err) => {
-                alert("Unable to fetch ticket" + err.message);
+                console.error(err.message);
               });
           });
         });
@@ -880,18 +890,18 @@ document.addEventListener("DOMContentLoaded", () => {
   contact.forEach((items) => {
     const newLinks = document.createElement("div");
     newLinks.innerHTML = `
-        <a href="${items.link}" target="_blank" class="flex items-center gap-4 mt-[20px] hover:bg-neutral-800 w-[80%]">
-           <i class="${items.icon} text-red-100 text-4xl "></i>
-         <div>
-          <h4 class="text-2xl text-red-100 font-mons font-semibold">
-            ${items.name}
-         </h4>
-          <p class="text-gray-400 text-base font-serif mt-[10px]">
-          ${items.value} 
-          </p>
-         </div>         
-        </a>
-    `;
+            <a href="${items.link}" target="_blank" class="flex items-center gap-4 mt-[20px] hover:bg-neutral-800 w-[80%]">
+               <i class="${items.icon} text-red-100 text-4xl "></i>
+             <div>
+              <h4 class="text-2xl text-red-100 font-mons font-semibold">
+                ${items.name}
+             </h4>
+              <p class="text-gray-400 text-base font-serif mt-[10px]">
+              ${items.value}
+              </p>
+             </div>
+            </a>
+        `;
     linksMain.appendChild(newLinks);
   });
 

@@ -407,7 +407,108 @@
         &copy; 2025. All right reserved by EventHub
       </p>
     </div>
-    <script src="../script.js"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const contact = [
+          {
+            name: "email",
+            value: "salvationazuh@gmail.com",
+            icon: "bx bx-envelope",
+            link: "mailto:salvationazuh@gmail.com",
+          },
+          {
+            name: "phone",
+            value: "+2348131933895",
+            icon: "bx bx-phone",
+            link: "tel:+2348131933895",
+          },
+          {
+            name: "Office address",
+            value: "No 7 Vincent street, Shomolu Lagos, Nigeria",
+            icon: "bx bx-map",
+            link: "https://www.google.com/maps?q=9+Vincent+St,+Igbobi,+Lagos+101245,+Lagos",
+          },
+          {
+            name: "Live Chat",
+            value: "You can chat with us",
+            icon: "bx bx-chat",
+            link: "https://wa.me/2348131933895",
+          },
+        ];
+
+        const linksMain = document.getElementById("linksMain");
+
+        contact.forEach((items) => {
+          const newLinks = document.createElement("div");
+          newLinks.innerHTML = `
+            <a href="${items.link}" target="_blank" class="flex items-center gap-4 mt-[20px] hover:bg-neutral-800 w-[80%]">
+               <i class="${items.icon} text-red-100 text-4xl "></i>
+             <div>
+              <h4 class="text-2xl text-red-100 font-mons font-semibold">
+                ${items.name}
+             </h4>
+              <p class="text-gray-400 text-base font-serif mt-[10px]">
+              ${items.value}
+              </p>
+             </div>
+            </a>
+        `;
+          linksMain.appendChild(newLinks);
+        });
+
+        // contact form validation
+
+        const form = document.querySelector("form");
+        const errorMessage = document.getElementById("errorMessage");
+        const successMessage = document.getElementById("successMessage");
+
+        form.addEventListener("submit", (e) => {
+          e.preventDefault();
+
+          errorMessage.textContent = "";
+          successMessage.textContent = "";
+
+          const name = document.getElementById("name").value.trim();
+          const email = document.getElementById("email").value.trim();
+          const subject = document.getElementById("subject").value.trim();
+          const message = document.getElementById("message").value.trim();
+
+          if (!name || !email || !subject || !message) {
+            errorMessage.textContent = "Please fill the required area";
+            return;
+          } else if (!/\S+@\S+\.\S+/.test(email)) {
+            errorMessage.textContent = `please use a vaild email address`;
+            return;
+          } else {
+            fetch("http://localhost:5000/api/send-email", {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify({
+                name,
+                email,
+                subject,
+                message,
+              }),
+            })
+              .then((res) => {
+                if (!res.ok) throw new Error("Failed to send message");
+                return res.json();
+              })
+              .then((data) => {
+                successMessage.textContent = "Message sent Successfully!";
+                form.reset();
+              })
+              .catch((err) => {
+                console.error(err);
+                errorMessage.textContent =
+                  "An error occurred while sending the message";
+              });
+          }
+        });
+      });
+    </script>
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
   </body>
 </html>
