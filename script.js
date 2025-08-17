@@ -215,23 +215,23 @@ document.addEventListener("DOMContentLoaded", () => {
               
             </div>
 
-            <div class="flex justify-between bg-neutral-900 p-[15px]">
-              <div class="w-[40%]">
+            <div class="flex flex-col bg-neutral-900 p-[15px]">
+              <div class="w-[90%] mx-auto text-center">
                 <h2 class="text-1xl font-mons font-bold text-red-100">Match Information</h2>
                 <p class="mt-[3px] text-sm md:text-base text-gray-400 font-sans"><span>${
                   events.details
                 }:</span> ${events.description} </p>
               </div>
 
-              <div class= w-[30%]>
-                <h2 class="text-sm md:text-1xl font-mons font-bold text-red-100">Ticket Options</h2>
+              <div class= w-[100%] md:w-[90%] mx-auto >
+                <h2 class="text-sm md:text-1xl text-center font-mons font-bold pt-[10px] text-red-100">Ticket Options</h2>
 
-                <div class="mt-[10px] shadow-[0_0_10px_0_theme('colors.red.100')]">
+                <div class="mt-[15px] w-[100%] md:w-[95%] pb-[10px] md:mx-auto shadow-[0_0_10px_0_theme('colors.red.100')]">
                   <h4 class="text-1xl pt-[10px] font-bold text-gray-400 font-serif text-center">VIPs</h4>
-                  <p class="pl-[10px] text-sm text-gray-300 font-semibold font-sans">Price: <span class=" italic" id="vipprice-${
+                  <p class="pl-[10px] text-sm text-center text-gray-300 font-semibold font-sans">Price: <span class=" italic" id="vipprice-${
                     events._id
                   }">€${events.vip}</span></p>
-                  <p class="pl-[10px] pb-[3px] text-gray-300">
+                  <p class="pl-[10px] pb-[3px] text-center text-gray-300">
                   <button id="vipminusIcon-${
                     events._id
                   }" class="cursor-pointer p-[5px]" type="button"><i class="bx bx-minus"></i></button
@@ -240,14 +240,17 @@ document.addEventListener("DOMContentLoaded", () => {
                    events._id
                  }" class="cursor-pointer p-[5px]" type="button"><i class="bx bx-plus"></i></button>
                  </p>
+                 <button id="vpayment-${
+                   events._id
+                 }" class="flex justify-center items-center bg-red-100 w-[150px] p-[10px] rounded-3xl ml-auto mr-auto text-sm font-sans text-gray-500 font-bold hover:bg-black hover:text-white" type="button">Pay For Vip Ticket</button>
                 </div>
 
-                <div class="mt-[10px] shadow-[0_0_10px_0_theme('colors.red.100')]">
+                <div class="mt-[15px] w-[100%]  md:w-[95%] pb-[10px] md:mx-auto shadow-[0_0_10px_0_theme('colors.red.100')]">
                   <h4 class="text-1xl pt-[10px] font-bold text-gray-400 font-serif text-center">Regulars</h4>
-                  <p class="pl-[10px] text-sm text-gray-300 font-semibold font-sans">Price: <span class=" italic" id="regularprice-${
+                  <p class=" text-center text-sm text-gray-300 font-semibold font-sans">Price: <span class=" italic" id="regularprice-${
                     events._id
                   }">€${events.regular}</span></p>
-                  <p class="pl-[10px] pb-[3px] text-gray-300">
+                  <p class="pl-[10px] pb-[3px] text-center text-gray-300">
                   <button id="regularminusIcon-${
                     events._id
                   }" class="cursor-pointer p-[5px]" type="button"><i class="bx bx-minus"></i></button
@@ -256,6 +259,9 @@ document.addEventListener("DOMContentLoaded", () => {
                    events._id
                  }" class="cursor-pointer p-[5px]" type="button"><i class="bx bx-plus"></i></button>
                  </p>
+                 <button id="rpayment-${
+                   events._id
+                 }" class="flex justify-center items-center bg-red-100 w-[200px] p-[10px] rounded-3xl ml-auto mr-auto text-sm font-sans text-gray-500 font-bold hover:bg-black hover:text-white" type="button">Pay For Regular Ticket</button>
                 </div>
                 
                 
@@ -263,7 +269,7 @@ document.addEventListener("DOMContentLoaded", () => {
             </div>
 
             <div class="bg-neutral-900 pb-[30px] pt-[20px]">
-              <button id="payment" class="flex justify-center items-center bg-red-100 w-[150px] p-[10px] rounded-3xl ml-auto mr-auto text-sm font-sans text-gray-500 font-bold hover:bg-black hover:text-white" type="button">Pay For Ticket</button>
+              
             </div>
           </div>
         </div>`;
@@ -280,7 +286,8 @@ document.addEventListener("DOMContentLoaded", () => {
           );
           const vipnumber = document.getElementById(`vipnums-${events._id}`);
 
-          const payment = document.getElementById("payment");
+          const rpayment = document.getElementById(`rpayment-${events._id}`);
+          const vpayment = document.getElementById(`vpayment-${events._id}`);
 
           vipplusicon.addEventListener("click", () => {
             vipcount++;
@@ -327,23 +334,61 @@ document.addEventListener("DOMContentLoaded", () => {
             regularPrice.textContent = "€" + events.regular * regularcount;
           });
 
-          payment.addEventListener("click", () => {
-            fetch("http://localhost:5000/api/ticket", {
-              method: "GET",
+          rpayment.addEventListener("click", () => {
+            fetch("http://localhost:5000/api/pay", {
+              method: "POST",
               credentials: "include",
               headers: {
                 "Content-Type": "application/json",
               },
+              body: JSON.stringify({
+                amount: events.regular * regularcount,
+                eventId: events._id,
+                eventModel: "footballEvents",
+                quantity: regularcount,
+              }),
             })
               .then((res) => {
-                if (!res.ok) throw new Error("Failed to fetch");
+                if (!res.ok) throw new Error("Failed To start payment");
                 return res.json();
               })
-              .then((ticket) => {
-                paymentPlatform(ticket);
+              .then((data) => {
+                if (data.authorization_url) {
+                  alert("Redirecting to the payment platform");
+                  window.location.href = data.authorization_url;
+                }
               })
               .catch((err) => {
-                alert("unable to fetch ticket" + err.message);
+                console.log(err.message);
+              });
+          });
+
+          vpayment.addEventListener("click", () => {
+            fetch("http://localhost:5000/api/pay", {
+              method: "POST",
+              credentials: "include",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify({
+                amount: events.vip * vipcount,
+                eventId: events._id,
+                eventModel: "footballEvents",
+                quantity: vipcount,
+              }),
+            })
+              .then((res) => {
+                if (!res.ok) throw new Error("Failed To start payment");
+                return res.json();
+              })
+              .then((data) => {
+                if (data.authorization_url) {
+                  alert("Redirecting to the payment platform");
+                  window.location.href = data.authorization_url;
+                }
+              })
+              .catch((err) => {
+                console.log(err.message);
               });
           });
         });
@@ -517,6 +562,7 @@ document.addEventListener("DOMContentLoaded", () => {
               })
               .then((data) => {
                 if (data.authorization_url) {
+                  alert("Redirecting to the payment platform");
                   window.location.href = data.authorization_url;
                 }
               })
@@ -631,7 +677,9 @@ document.addEventListener("DOMContentLoaded", () => {
             </div>
 
             <div class="bg-neutral-900 pb-[30px] pt-[20px]">
-              <button id="payment" class="flex justify-center items-center bg-red-100 w-[150px] p-[10px] rounded-3xl ml-auto mr-auto text-sm font-sans text-gray-500 font-bold hover:bg-black hover:text-white" type="button">Pay For Ticket</button>
+              <button id="payment-${
+                mainMovies._id
+              }" class="flex justify-center items-center bg-red-100 w-[150px] p-[10px] rounded-3xl ml-auto mr-auto text-sm font-sans text-gray-500 font-bold hover:bg-black hover:text-white" type="button">Pay For Ticket</button>
             </div>
           </div>
         </div>`;
@@ -652,7 +700,7 @@ document.addEventListener("DOMContentLoaded", () => {
           const eventNums = document.getElementById(
             `movienums-${mainMovies._id}`
           );
-          const payment = document.getElementById("payment");
+          const payment = document.getElementById(`payment-${mainMovies._id}`);
 
           eventPlus.addEventListener("click", () => {
             movieCount++;
@@ -669,20 +717,31 @@ document.addEventListener("DOMContentLoaded", () => {
           });
 
           payment.addEventListener("click", () => {
-            fetch("http://localhost:5000/api/ticket", {
-              method: "GET",
+            fetch("http://localhost:5000/api/pay", {
+              method: "POST",
               credentials: "include",
-              headers: { "Content-Type": "ap[lication/json" },
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify({
+                amount: mainMovies.ticket * movieCount,
+                eventId: mainMovies._id,
+                eventModel: "movieevents",
+                quantity: movieCount,
+              }),
             })
               .then((res) => {
-                if (!res.ok) throw new Error("Failed to fetch ticket");
+                if (!res.ok) throw new Error("Failed to start payment");
                 return res.json();
               })
-              .then((ticket) => {
-                paymentPlatform(ticket);
+              .then((data) => {
+                if (data.authorization_url) {
+                  alert("Redirecting to payment platform");
+                  window.location.href = data.authorization_url;
+                }
               })
               .catch((err) => {
-                alert("unable to fetch ticket" + err.message);
+                console.error(err.message);
               });
           });
         });
@@ -793,7 +852,9 @@ document.addEventListener("DOMContentLoaded", () => {
       </div>
 
       <div class="bg-neutral-900 pb-[30px] pt-[20px]">
-        <button id="payment" class="flex justify-center items-center bg-red-100 w-[150px] p-[10px] rounded-3xl ml-auto mr-auto text-sm font-sans text-gray-500 font-bold hover:bg-black hover:text-white" type="button">Pay For Ticket</button>
+        <button id="payment-${
+          mainmusicEvents._id
+        }" class="flex justify-center items-center bg-red-100 w-[150px] p-[10px] rounded-3xl ml-auto mr-auto text-sm font-sans text-gray-500 font-bold hover:bg-black hover:text-white" type="button">Pay For Ticket</button>
       </div>
     </div>
   </div>
@@ -816,7 +877,9 @@ document.addEventListener("DOMContentLoaded", () => {
             `musicnums-${mainmusicEvents._id}`
           );
 
-          const payment = document.getElementById("payment");
+          const payment = document.getElementById(
+            `payment-${mainmusicEvents._id}`
+          );
 
           musicPlus.addEventListener("click", () => {
             musicCount++;
@@ -834,22 +897,31 @@ document.addEventListener("DOMContentLoaded", () => {
               "₦" + mainmusicEvents.ticket * musicCount;
           });
           payment.addEventListener("click", () => {
-            fetch("http://localhost:5000/api/ticket", {
-              method: "GET",
+            fetch("http://localhost:5000/api/pay", {
+              method: "POST",
               credentials: "include",
               headers: {
                 "Content-Type": "application/json",
               },
+              body: JSON.stringify({
+                amount: mainmusicEvents.ticket * musicCount,
+                eventId: musicEvents._id,
+                eventModel: "musicevent",
+                quantity: musicCount,
+              }),
             })
               .then((res) => {
-                if (!res.ok) throw new Error("Failed to fetch ticket");
+                if (!res.ok) throw new Error("Failed to start Payment");
                 return res.json();
               })
-              .then((ticket) => {
-                paymentPlatform(ticket);
+              .then((data) => {
+                if (data.authorization_url) {
+                  alert("Redirecting to the payment platform");
+                  window.location.href = data.authorization_url;
+                }
               })
               .catch((err) => {
-                alert("Unable to fetch ticket" + err.message);
+                console.error(err.message);
               });
           });
         });
