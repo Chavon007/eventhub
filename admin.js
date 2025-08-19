@@ -4,23 +4,23 @@ document.addEventListener("DOMContentLoaded", () => {
   // overwiew
   async function overView() {
     PageContent.innerHTML = ` <p class="text-red-100 text-base font-serif">Loading Overview....</p>`;
-    const eventRes = await fetch("http://localhost:5000/api/totalevents", {
+    const eventRes = await fetch("https://eventhubbackend-qa6q.onrender.com/api/totalevents", {
       credentials: "include",
     });
     const eventData = await eventRes.json();
 
-    const userRes = await fetch("http://localhost:5000/api/totaluser", {
+    const userRes = await fetch("https://eventhubbackend-qa6q.onrender.com/api/totaluser", {
       credentials: "include",
     });
     const userData = await userRes.json();
 
-    const ticketRes = await fetch("http://localhost:5000/api/totalticket", {
+    const ticketRes = await fetch("https://eventhubbackend-qa6q.onrender.com/api/totalticket", {
       credentials: "include",
     });
     const ticketData = await ticketRes.json();
 
     const upcomingeventRes = await fetch(
-      "http://localhost:5000/api/upcomingevents",
+      "https://eventhubbackend-qa6q.onrender.com/api/upcomingevents",
       { credentials: "include" }
     );
 
@@ -95,7 +95,7 @@ document.addEventListener("DOMContentLoaded", () => {
   async function events() {
     PageContent.innerHTML = `<p class="text-red-100 text-base font-serif">Loading Events</p>`;
     const allEventsRes = await fetch(
-      "http://localhost:5000/api/upcomingevents",
+      "https://eventhubbackend-qa6q.onrender.com/api/upcomingevents",
       {
         credentials: "include",
       }
@@ -133,7 +133,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // users
   async function users() {
     PageContent.innerHTML = `<p class="text-red-100 text-base font-serif">Loading users</p>`;
-    const userRes = await fetch("http://localhost:5000/api/totaluser", {
+    const userRes = await fetch("https://eventhubbackend-qa6q.onrender.com/api/totaluser", {
       credentials: "include",
     });
     const userData = await userRes.json();

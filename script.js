@@ -141,7 +141,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const footballEvents = document.getElementById("actualEvents");
 
   if (footballEvents) {
-    fetch("http://localhost:5000/api/footballevents")
+    fetch("https://eventhubbackend-qa6q.onrender.com/api/footballevents")
       .then((res) => res.json())
       .then((footballevents) => {
         console.log("API RESPONSE:", footballevents);
@@ -335,7 +335,7 @@ document.addEventListener("DOMContentLoaded", () => {
           });
 
           rpayment.addEventListener("click", () => {
-            fetch("http://localhost:5000/api/pay", {
+            fetch("https://eventhubbackend-qa6q.onrender.com/api/pay", {
               method: "POST",
               credentials: "include",
               headers: {
@@ -364,7 +364,7 @@ document.addEventListener("DOMContentLoaded", () => {
           });
 
           vpayment.addEventListener("click", () => {
-            fetch("http://localhost:5000/api/pay", {
+            fetch("https://eventhubbackend-qa6q.onrender.com/api/pay", {
               method: "POST",
               credentials: "include",
               headers: {
@@ -400,7 +400,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const bashParty = document.getElementById("bashEvents");
 
   if (bashParty) {
-    fetch("http://localhost:5000/api/bashpartyevents")
+    fetch("https://eventhubbackend-qa6q.onrender.com/api/bashpartyevents")
       .then((res) => res.json())
       .then((bashpartyevents) => {
         bashParty.innerHTML = "";
@@ -543,7 +543,7 @@ document.addEventListener("DOMContentLoaded", () => {
           });
 
           payment.addEventListener("click", () => {
-            fetch("http://localhost:5000/api/pay", {
+            fetch("https://eventhubbackend-qa6q.onrender.com/api/pay", {
               method: "POST",
               credentials: "include",
               headers: {
@@ -578,7 +578,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const movieEvents = document.getElementById("movieEvents");
 
   if (movieEvents) {
-    fetch("http://localhost:5000/api/movieevents")
+    fetch("https://eventhubbackend-qa6q.onrender.com/api/movieevents")
       .then((res) => res.json())
       .then((movieEventsCard) => {
         movieEvents.innerHTML = "";
@@ -717,7 +717,7 @@ document.addEventListener("DOMContentLoaded", () => {
           });
 
           payment.addEventListener("click", () => {
-            fetch("http://localhost:5000/api/pay", {
+            fetch("https://eventhubbackend-qa6q.onrender.com/api/pay", {
               method: "POST",
               credentials: "include",
               headers: {
@@ -753,7 +753,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const musicEvents = document.getElementById("musicEvents");
 
   if (musicEvents) {
-    fetch("http://localhost:5000/api/musicevents")
+    fetch("https://eventhubbackend-qa6q.onrender.com/api/musicevents")
       .then((res) => res.json())
       .then((musicevents) => {
         musicEvents.innerHTML = "";
@@ -897,7 +897,7 @@ document.addEventListener("DOMContentLoaded", () => {
               "₦" + mainmusicEvents.ticket * musicCount;
           });
           payment.addEventListener("click", () => {
-            fetch("http://localhost:5000/api/pay", {
+            fetch("https://eventhubbackend-qa6q.onrender.com/api/pay", {
               method: "POST",
               credentials: "include",
               headers: {
@@ -1001,7 +1001,7 @@ document.addEventListener("DOMContentLoaded", () => {
       errorMessage.textContent = `please use a vaild email address`;
       return;
     } else {
-      fetch("http://localhost:5000/api/send-email", {
+      fetch("https://eventhubbackend-qa6q.onrender.com/api/send-email", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

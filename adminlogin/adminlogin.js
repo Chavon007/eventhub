@@ -15,7 +15,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (!username || !password) {
       errorAdmin.textContent = "Please fill the required area";
     } else {
-      fetch("http://localhost:5000/api/admindashboard", {
+      fetch("https://eventhubbackend-qa6q.onrender.com/api/admindashboard", {
         method: "POST",
         credentials: "include",
         headers: { "Content-Type": "application/json" },

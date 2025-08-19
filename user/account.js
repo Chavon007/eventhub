@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
-  fetch("http://localhost:5000/api/me", {
+  fetch("https://eventhubbackend-qa6q.onrender.com/api/me", {
     method: "GET",
     credentials: "include",
   })
@@ -30,7 +30,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const logout = document.getElementById("logout");
 
   logout.addEventListener("click", () => {
-    fetch("http://localhost:5000/api/logout", {
+    fetch("https://eventhubbackend-qa6q.onrender.com/api/logout", {
       method: "POST",
       credentials: "include",
     })
@@ -43,7 +43,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // personal events details
 
-  fetch("http://localhost:5000/api/userstat", {
+  fetch("https://eventhubbackend-qa6q.onrender.com/api/userstat", {
     method: "GET",
     credentials: "include",
   })

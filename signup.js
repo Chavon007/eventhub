@@ -48,7 +48,7 @@ document.addEventListener("DOMContentLoaded", () => {
     } else {
       submitbtn.disabled = true;
 
-      fetch("http://localhost:5000/api/signup", {
+      fetch("https://eventhubbackend-qa6q.onrender.com/api/signup", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

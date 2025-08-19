@@ -22,7 +22,7 @@ document.addEventListener("DOMContentLoaded", () => {
       errorMessageLogin.textContent = "please use a vaild email address";
       return;
     } else {
-      fetch("http://localhost:5000/api/login", {
+      fetch("https://eventhubbackend-qa6q.onrender.com/api/login", {
         method: "POST",
         credentials: "include",
         headers: {
