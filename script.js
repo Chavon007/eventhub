@@ -905,7 +905,7 @@ document.addEventListener("DOMContentLoaded", () => {
               },
               body: JSON.stringify({
                 amount: mainmusicEvents.ticket * musicCount,
-                eventId: musicEvents._id,
+                eventId: mainmusicEvents._id,
                 eventModel: "musicevent",
                 quantity: musicCount,
               }),
