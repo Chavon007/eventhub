@@ -21,7 +21,8 @@ document.addEventListener("DOMContentLoaded", () => {
     })
     .catch((err) => {
       setTimeout(() => {
-        window.location.href = "../index.html";
+        window.location.href =
+          "https://eventhub-eight-gamma.vercel.app/index.html";
       }, 3000);
     });
 
@@ -36,7 +37,7 @@ document.addEventListener("DOMContentLoaded", () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        window.location.href = "../index.html";
+        window.location.href = "https://eventhub-eight-gamma.vercel.app/index.html";
       })
       .catch((err) => {});
   });
